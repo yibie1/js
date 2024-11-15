@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon"
+        href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5DSLHx9Klj4kFsNjbLaLnbMCwqq7e5pC8bQ&s"
+        type="image/x-icon">
+    <title>String</title>
+</head>
+
+<body>
+    <center>
+        <h2>Js String Methods </h2>
+    </center>
+    <!-- string is an object and reprsents the sequence of charchter  -->
+    <script>
+        //charAt() => provide the value at a specific index 
+
+        // last value 
+        var str1 = "Yiabeltal sima";
+        document.write(str1.charAt(str1.length - 1));
+        // charCodeAt() => it provide the uicode value of charcter at a specified index 
+        //  if it's out of index it retrun NaN value 
+        document.write("<br/>", str1.charCodeAt(str1.length - 2))
+        // --- concat() it returns the cobination of two or more strings 
+        document.write(str1.concat(" Simachew", "Fentie"))
+
+        //indexOf() it provides the positon of char value in a give char, the index of the first find char 
+
+        document.write("<br>", str1.indexOf('l', 5));
+
+        //lastIndexOf() => it provides the last index of a give char 
+
+        document.write('<br>', str1.lastIndexOf('a'))
+        //search() it returns position if it matchs the //it's case sensetive but we can ignor by / /i igonor flag
+
+        document.write('<br>', str1.search(/Bel/i))
+        // match() used to match the string, / /g to ignore, it's case sensetive 
+
+        //replace() replace a part of agiven string to with new string. to pass case senstive we use / /g (global search)
+
+        document.write('<br>', str1.replace('ab', 'bb'))
+         //substr() featch the part of a give string and return the new string
+            // start index and length 
+
+        document.write('<br>', str1.substr(4))
+
+        //substring is return the new array between start and end index 
+            // same with slice but not accept - ve value 
+         document.write('<br>', str1.substring(0, 5))
+            // slice => same as sub string but support -ve, but is the value -ve it strat from the end
+            //toLowerCase(), toUperCase(), 
+
+            //split() => string to array
+
+            document.write('<br>', str1.split('a', 3))
+            //  str1 = str1.split('a', 3)
+            //  console.log(str1[2]);
+
+            //trim() to remove white space 
+
+            
+    </script>
+</body>
+
+</html>

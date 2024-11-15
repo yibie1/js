@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math</title>
+
+    <style>
+        .div {
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form name="form2" >
+
+        <div class="div">
+            <label for="fname">First Name: </label>
+            <input type="text" name="fname" id="fname" />
+            <br />
+            <span style="color: red;" id="errorname"></span>
+        </div>
+
+        <div class="div">
+            <label for="lname">Last Name: </label>
+            <input type="text" name="lname" id="lname" />
+            <br />
+            <span style="color: red;" id="errorlname"></span>
+        </div>
+
+        <div class="div">
+            <label for="dob">Date of Birth: </label>
+            <input type="date" name="dob" id="dob" />
+            <br />
+            <span style="color: red;" id="errordob"></span>
+        </div>
+
+        <div class="div">
+            <label>Gender: </label>
+            <input type="radio" name="gender" id="genderMale" value="Male" /> <label for="genderMale">Male</label>
+            <input type="radio" name="gender" id="genderFemale" value="Female" /> <label for="genderFemale">Female</label>
+            <br />
+            <span style="color: red;" id="errorgender"></span>
+        </div>
+
+        <div class="div">
+            <button type="submit" onclick="return disply()">Display</button>
+        </div>
+
+    </form>
+
+    <div id="result"></div> 
+
+    <script>
+        // function validatename() {
+        //     var errorname = document.getElementById("errorname");
+        //     var errorlname = document.getElementById("errorlname");
+        //     var errordob = document.getElementById('errordob');
+        //     var errorgender =document.getElementById("errorgender");
+        //     var name = document.form2.fname.value;
+        //     var lname = document.form2.lname.value;
+        //     var dob = document.form2.dob.value;
+        //     var gender = document.querySelector('input[name="gender"]:checked')?.value || "gender not selected"
+        //     if (name === '') {
+        //         errorname.innerHTML = "Please enter a name.";
+        //         return false;
+        //     } else {
+        //         errorname.innerHTML = '';
+        //         return true;
+        //     }
+        //     if(lname === ''){
+        //         errorlname.innerHTML = 'Please enter your last name';
+        //         return false
+        //     }else{
+        //         errorlname.innerHTML = ''
+        //     }
+        // }
+
+    function validatename() {
+    var fields = [
+        { name: 'fname', errorElementId: 'errorname', errorMessage: 'Please enter a name.' },
+        { name: 'lname', errorElementId: 'errorlname', errorMessage: 'Please enter your last name.' },
+        { name: 'dob', errorElementId: 'errordob', errorMessage: 'Please enter your date of birth.' },
+        { name: 'gender', errorElementId: 'errorgender', errorMessage: 'Gender not selected' }
+    ];
+
+    let isValid = true; 
+
+    // Validate each field
+    fields.forEach(field => {
+        var value = field.name === 'gender' ? 
+            document.querySelector('input[name="gender"]:checked') : 
+            document.form2[field.name].value;
+
+        var errorElement = document.getElementById(field.errorElementId);
+
+        if (field.name === 'gender' && !value) {
+            errorElement.innerHTML = field.errorMessage;
+            isValid = false;
+        } else if (field.name !== 'gender' && value.trim() === '') {
+            errorElement.innerHTML = field.errorMessage;
+      isValid = false;
+        } else {
+            errorElement.innerHTML = '';
+        }
+    });
+
+    return isValid; 
+}
+
+        function disply() {
+            if (!validatename()) return false;
+
+            var name = document.form2.fname.value;
+            var lname = document.form2.lname.value;
+            var dob = document.form2.dob.value;
+            var gender = document.querySelector('input[name="gender"]:checked')?.value || "Not specified";
+                var today = new Date();
+                var age = new Date(dob);
+                var calutedage = today.getFullYear() - age.getFullYear()
+            // Construct the output
+            var resultHtml =  `
+                <h1>Input Data</h1>
+                <table>
+                    <tr>
+                        <td>Full Name: </td><td>${name} ${lname}</td>
+                    </tr>
+                    <tr>
+                        <td>Age: </td><td>${calutedage}</td>
+                    </tr>
+                    <tr>
+                        <td>Gender: </td><td>${gender}</td>
+                    </tr>
+                </table>
+            `;
+
+           
+            document.getElementById("result").innerHTML = resultHtml;
+
+            return false; 
+        }
+    </script>
+
+</body>
+
+</html>

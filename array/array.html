@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Array</title>
+    <link rel="shortcut icon"
+        href="https://media.istockphoto.com/id/1367357589/photo/red-heart-shaped-sky-at-sunset-beautiful-landscape-with-flowers-love-background-with-copy.jpg?s=612x612&w=0&k=20&c=VbyUaFaEvR_hAGtDmcbyw7X3E7KPVmW4GYxEYjbBGOk="
+        type="image/x-icon">
+</head>
+
+<body>
+
+    <header>Array basic functions </header>
+    <script>
+        /*
+      array is an object it contains similar data type 
+      there is 3 types array declaration 
+      - var arr = ['','']
+        var arr = new Array()
+        var var - new Array("jdfn", '')
+        */
+
+
+        var product = ["pone", 'tablet', 'laptop', 'watch'];
+        for (let i = 0; i < product.length; i++) {
+            document.writeln(product[i] + "<br/>");
+        }
+        //  Or
+        product.map(pro => {
+            document.write(pro + "<br />")
+        })
+        // or 
+        product.forEach(pro => {
+            document.write("<h1>" + pro + "</h1><br />")
+
+        })
+
+        //Array methods 
+
+        // concat() : combine two or more array and returen new array 
+        //    Example
+
+        var arr1 = [1, 2, 3, 4, 5]
+        var arr2 = [6, 7, 8, 9, 10]
+        var arr3 = ["a", "b", "c", "d", "e"]
+
+        var arr4 = arr1.concat(arr2, arr3)
+
+        for (let i = 0; i < arr4.length; i++) {
+            document.write(arr4[i] + "<br/>")
+        }
+        //copywithin() copy the array with element and return the modifyed one
+
+        //array.copywithin(target, start, end)
+
+        //Example
+        var alph = ['a', 'b', 'c', 'd', 'e']
+
+        document.write("copywithin  ", alph.copyWithin(4, 0))
+
+        //array entries()
+        /*
+          to create a new iterator object of an array
+          it holding key => value pairs 
+          doesn't have parameter 
+        */
+
+        for (var e of alph.entries()) {
+            document.write("<br />" + e)
+        }
+
+
+        /*
+        every()
+        
+        to check whther the emlent of the array stisfying a give condition 
+        it returns bolean 
+        
+        */
+        var odd = [1, 3, 5, 7, 9]
+
+        function check(num) {
+            return num > 0
+        }
+        document.write(odd.every(check))
+
+        /*
+        flat() method 
+        this method is convert the multidimentional array to one dimesntion 
+        array
+        */
+
+        var _2d = ['abeba', 'aster', [1, 2, 3, ['aster', 'kebde', 'system']], 'almu']
+        document.write("<br/>", _2d.flat())
+        // out put is  abeba,aster,1,2,3,almu
+        /*
+         flatMap()
+         the combination of falt and map, it map each array value througj the maping function
+        */
+        document.write('<br/><h1> flatMap()</h1>')
+        var firuts = ['apple', 'orange', 'lemon', 'avocado']
+        var person = ['Aster', 'kalab', 'simon', 'dibkulu']
+
+        var flatmapresult = firuts.flatMap((firuts, i) => [firuts, person[i]]);
+
+        document.write("<br/>" + flatmapresult)
+
+        //split single sentence to word
+
+        var sentence = ['my name is Yibeltal Simachew Im web developer ']
+
+        var splitsentence = sentence.flatMap(i => i.split(" "))
+
+        for (let i = 0; i < splitsentence.length; i++) {
+            document.write(splitsentence[i] + "<br/>")
+        }
+
+        /*
+        q1, multiply each element of the array by two
+        */
+
+        var q1 = [1, 23, 4, 3, 21, 1]
+
+        var solq1 = q1.flatMap(element => [element * 2])
+
+        document.write("the out put is <br/>", solq1)
+        /*
+        fill()
+        fill elemnts to the array with static value 
+        array.fill(value[start[, end]])
+        end value is excluded 
+        */
+
+        document.write("<br/> this is fill opration <br /> ", q1.fill(12, 1, 2))
+        /*
+       from() create a new array of the holds the copy of 
+       Array.from(obj, func, arg)
+        */
+        // converting the words to letters 
+
+        document.write(Array.from("Yibeltal"))
+
+        //display the sequence of the numbers 
+
+        document.write("<br/>", Array.from({ length: 12 }, (v, i) => i * 2))
+
+        /*
+            filter() it returen the new array the elment that pass the given condition
+
+        */
+
+        // Q1, from the give array filter the odd and even numbers
+
+
+        var nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 22, 23, 24, 25, 26, 27]
+
+        document.writeln("<br/> The even numbers <br/>", nums.filter(element => element % 2 == 0));
+        document.writeln("<br/> The odd numbers <br/>", nums.filter(element => element % 2 !== 0));
+
+        // there is also an other soution just by creating function and call it
+        /*
+            find() just search and display the first element that s
+            statisfy the condition
+        */
+
+        // let create simple game 
+
+        function guss() {
+
+            var firut_list = ['Avocado', 'Penaple', 'Orange', 'Lemon', 'Tree']
+            var input = document.getElementById("fname").value.trim();
+            console.log(input)
+
+            if (firut_list.find(i => i === input)) {
+                alert(`Wow you are lucky you got ${input}`)
+            } else {
+                alert("Try agin")
+            }
+
+        }
+
+        //findIndex() just it give the index of the element that satisfying the condtion
+
+        document.write("<br/> the findindex", nums.findIndex((element => element === 24)))
+
+ // foreach , with in this method let's sum up the nums value 
+
+ var sum = 0;
+
+     nums.forEach(element => {
+        sum = sum+element;
+     })
+
+     
+
+     console.log("The sum of the array nums is", nums.reduce((prev, current) => prev + current))
+
+     // includes() this checking whther the given element contained in the element 
+
+    document.write("<br> this is greate : ",nums.includes( 22))
+    
+    //indexOf return the index of the element, if the element not present it return -1
+
+
+   // join() it converts array to string 
+
+    document.write(firuts.join(","))
+
+    // keys() : return new itrator object holds the key of for every index in the array
+   
+   //lastindexof() method used to search position of a given array, this is the same as indexof but is starts form the end 
+   
+   document.write("<br/> Last index of ",nums.lastIndexOf(9))
+
+
+   //map(): this method is specified function for every array element 
+   nums.map(element => element)
+
+// Array.of() method  it returns a new array from diffrent number of arguments : just cretate an array
+  
+//pop it reomove and terturn the last elemnt of the array 
+
+// lets remove the last elemnts form the nums array
+console.log(nums)
+for(let i = 12; i <= nums.length; i++){
+    nums.pop()
+}
+console.log(nums)
+
+// push add one or more element to the end of the array
+// 
+nums.push(28,29, 30);
+console.log(nums)
+// revers this method is just revers the array element posiyion 
+
+ // lets add 3 numbers in the array nums in beginig 
+
+ nums.reverse();
+ nums.push(33,34,35);
+ nums.reverse();
+ console.log(nums)
+
+
+ // reduce : this method just reduce to single value 
+ var arr5 = [30, 15, 5]
+
+ console.log(nums.reduce((preval, curntval)=> preval+curntval))
+   
+   
+// reduceright it reduce fromright to left 
+
+console.log(arr5.reduceRight((prev, next) => prev -  next))
+//some() it retun boolean check at least single element pass or not, it returns false for empty array 
+  
+ console.log(arr5.some(element => element%2 === 0)) 
+  
+if(arr5.some(element => element === 9)){
+     document.write("Nooooo!")}
+
+  console.log(arr5.some(e => e === 5))
+
+
+  //shift() : remove the first elemnt of the array and return taht element, its the oposit of pop
+//unshift() add one or more element in the first index of the array, the oposit of push
+//let's remove the first three elemt from the array nums 
+
+for(let i = 0; i<=2; i++){
+    nums.shift();
+}
+console.log(nums)
+//slice: this method just show the the slected element 
+
+ console.log(nums.slice(6, 10));
+ //splice : used to add/remove element to/from the existing array
+  
+  //splice(start, delete , elmnts)
+    arr5 = ['a', 'b', 'c']
+  console.log(arr5.splice(60,0, 'd', 'es'))
+
+  console.log(arr5);
+//toLocalString convert array to string 
+    
+
+var v6 = ['ምግብ', new Date('09 Nov 2024')]
+
+document.write(v6.toLocaleString('en', {timeZone: 'UTC'}));
+ console.log(v6)
+ console.log(arr5.toLocaleString())
+
+ //toString() without affacting the previous
+  
+  
+  //values(): it itrate the array element of the array
+
+  console.log();
+  </script>
+
+    <form action="" name="form">
+        <br>
+        <input style="padding: 10px; height: 5px; border-radius: 5pxs;" type="text" name="frname" id="fname"
+            onchange="guss()" placeholder="guss and see you result">
+    </form>
+</body>
+
+</html>

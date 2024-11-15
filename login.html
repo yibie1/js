@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        .div {
+            padding: 20px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <form name="form">
+        <div class="div">
+            <label for="username">Username:</label>
+            <input type="text" name="username" id="username">
+            <br>
+            <span id="errormsgusername"></span>
+        </div>
+        <div class="div">
+            <label for="password">Password</label>
+            <input type="password" name="password" onkeyup="return passlength()" id="password">
+            <br>
+            <span id="errormsgpass"></span>
+        </div>
+        <div class="div">
+            <label for="confpassword">Confirm Password</label>
+            <input type="password" name="confpassword" onkeyup="return confpasswordvalidate()" id="confpassword">
+            <br>
+            <span id="errormsgconfpass"></span>
+        </div>
+        <div class="div">
+            <button type="submit" onclick="return signup()">Sign up</button>
+        </div>
+    </form>
+
+    <div id="show"></div>
+    <script>
+        function passlength() {
+            var password = document.form.password.value;
+            var errormsg = document.getElementById("errormsgpass");
+
+            let isValid = true;
+            if (password.length > 0 && password.length <= 5) {
+                errormsg.innerHTML = "<strong style='color: red;'>Week password</strong>"
+                isValid = false;
+            } else if (password.length > 5 && password.length < 8) {
+                errormsg.innerHTML = "<strong style='color: darkorange;'>Medium password</strong>"
+                isValid = true;
+            } else if (password.length >= 8) {
+                errormsg.innerHTML = "<strong style='color: green;'>Strong password</strong>"
+                isValid = true;
+            }
+            else {
+                errormsg.innerHTML = ''
+                isValid = true;
+            }
+
+            return isValid;
+        }
+
+        function confpasswordvalidate() {
+            console.log(document.form.confpassword.value)
+            var confpass = document.form.confpassword.value;
+            var password = document.form.password.value;
+            var errormsgconfpass = document.getElementById("errormsgconfpass");
+            let isValid = true;
+
+            if (password.trim() !== confpass.trim()) {
+                errormsgconfpass.innerHTML = "<strong style='color: red;'>Password not match</strong>"
+                isValid = false;
+            }
+            else {
+                errormsgconfpass.innerHTML = ''
+                isValid = true;
+            }
+            return isValid;
+        }
+
+
+        function inputvalidate() {
+            var inputs = [
+                { name: 'username', errormsgId: 'errormsgusername', errormsg: 'user name should not empty' },
+                { name: 'password', errormsgId: 'errormsgpass', errormsg: 'password should not empty' },
+                { name: 'confpassword', errormsgId: 'errormsgconfpass', errormsg: 'confirm password should not empty' },
+            ]
+
+            let isValid = true;
+
+            inputs.forEach(input => {
+                var value = document.form[input.name].value;
+                var msgdisplay = document.getElementById(input.errormsgId)
+                if (value.trim() === '') {
+                    msgdisplay.innerHTML = `<strong style='color: red;'>${input.errormsg}</strong>`
+                    isValid = false;
+                } else if (!value) {
+                    msgdisplay.innerHTML = `<strong style='color: red;'>${input.errormsg}</strong>`
+                    isValid = false;
+                }
+                else {
+                    msgdisplay.innerHTML = ''
+                    isValid = true;
+                }
+            })
+            return isValid;
+        }
+
+        function signup() {
+
+             var show = document.getElementById("show");
+
+            var confpass = document.form.confpassword.value;
+            var password = document.form.password.value;
+            var username = document.form.username.value;
+
+
+            
+        
+            if (!inputvalidate() || !passlength() || !confpasswordvalidate()) return false
+            
+
+           
+           
+          show.innerHTML = `
+         <div class='div'>
+            <table>
+                <tr>
+                    <td>User Name: </td><td> ${username}</td>
+                                    </tr>
+                                    <tr>
+                    <td>Password: </td><td>${password.length} Lenght of password </td>
+                    </tr>
+
+                </table>
+            
+            
+            </div>
+       
+       
+       `
+ 
+return false;
+
+            
+        }
+
+
+
+    </script>
+</body>
+
+</html>

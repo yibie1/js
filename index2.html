@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var user = {
+            name: 'Abc',
+            info: {
+                gender: 'male',
+                age : 43
+            },
+            data : [{
+                amh: 23,
+                math: 32,
+                garde: 'A+'
+            },
+               {
+                amh : 43,
+                math: 44,
+                garde: 'A'
+               } 
+        ],
+            clickHandler : function(){
+
+               
+                // let self = this;
+                // self.data.forEach(function(student){
+                //     console.log(`${student.amh} ${self.name}`)
+                // })
+
+            this.data.forEach(student => {
+                console.log(`${student.garde + student.amh} ${this.info.gender}`)
+            })
+            }
+        }
+  user.clickHandler();
+
+
+   function sum (a, b){
+     a = a || 2;
+     b= b || 3;
+    return a + b;
+   }
+
+   console.log("the sum of two number is ",sum(23, 45))
+    let arr = {name: 'ab', age: 3, gender: 'male'}
+   console.log(typeof arr)
+//   console.log("name" in arr) OR we can use hasOwnProperty
+console.log("Result", arr.hasOwnProperty("age"))
+
+
+// sum all values in the array by using reduce
+
+let numbers = [1,2,3,4,5]
+
+let sum2 = numbers.reduce((preVal, currentVal)=>{
+   return preVal + currentVal
+})
+
+console.log(`the sum of the array numbers is ${sum2} `)
+
+// checking, handling errors
+
+let userinfo = [1, 2, "ab", "op",3, 4, 9 ]
+
+let sum3 = userinfo.reduce((preVal, currentVal) =>{
+    //check the current value and sum up the numbers only 
+
+    if(typeof currentVal === 'number'){
+        return preVal + currentVal;
+    }
+    else {
+        console.error("Skipping data", currentVal)
+        return preVal;
+    } 
+})
+console.log("checking the numbers only", sum3)
+
+/*
+
+Type of Variables 
+    - local variable (block of function)
+    - global variable / window.{object}
+
+Two type of data types(
+    - primitive (string, number, bolean, undefinded, null)
+    - non-primitive(refrence)(object, array, regExp)
+
+
+ Special operators
+    - in 
+    - typeOf
+    - ternary operator, instanceOf, new, void, yield    
+*/
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="./images.png" type="image/x-icon">
+
+    <title>Class</title>
+</head>
+
+<body>
+    <script>
+
+        // we can call functions before we declare but class not
+
+        class userInfo {
+
+            constructor(name, email) {
+                this.name = name;
+                this.email = email
+            }
+
+            detailview() {
+                document.write(`The user name is  ${this.name} and email is 
+                ${this.email}  `)
+            }
+
+
+
+        }
+
+        var stu = class Cl {
+            constructor(grade, year) {
+                this.grade = grade;
+                this.year = year;
+            }
+        }
+
+        var stu1 = new stu("A+", 2021)
+
+        console.log(stu1)
+
+
+        var user1 = new userInfo("Aster Awoke", "asterawke@mail.com");
+        var user2 = new userInfo("Asmlash Komite", "asmlash@comite.org")
+
+        user1.detailview();
+        user2.detailview();
+
+    </script>
+</body>
+
+</html>
